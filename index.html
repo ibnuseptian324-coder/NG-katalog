@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NG Katalog HP - Nadien's Grafika</title>
+<meta name="theme-color" content="#0f766e">
+<style>
+:root{
+  --bg:#eefbf8;--card:#fff;--text:#10201d;--muted:#64736f;--pri:#0f766e;--pri2:#14b8a6;
+  --yel:#ffe066;--line:#d8ebe7;--danger:#dc2626;--shadow:0 16px 40px rgba(7,72,65,.12)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--text);
+  background:linear-gradient(180deg,#ecfffb,#fff 45%,#f6fffd);padding-bottom:88px
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.top{
+  background:radial-gradient(circle at 85% 5%,rgba(255,224,102,.9),transparent 30%),
+  linear-gradient(135deg,#063b35,#0f766e,#14b8a6);
+  color:white;padding:18px 16px 28px;border-radius:0 0 30px 30px;box-shadow:var(--shadow)
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#ffe066,#fff);
+  color:#0f766e;font-weight:1000;display:grid;place-items:center;font-size:22px
+}
+.brand h1{font-size:18px;margin:0}
+.brand p{margin:2px 0 0;color:rgba(255,255,255,.75);font-size:12px}
+.adminBtn{
+  border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);color:#fff;
+  padding:10px 12px;border-radius:999px;font-weight:900
+}
+.hero{padding-top:26px}
+.badge{display:inline-block;background:rgba(255,224,102,.18);color:#ffe066;border:1px solid rgba(255,224,102,.38);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900}
+.hero h2{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin:14px 0 12px}
+.hero p{color:rgba(255,255,255,.82);line-height:1.55;margin:0;font-size:14px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.actions a,.actions button{border:none;text-decoration:none;border-radius:15px;padding:12px 14px;font-weight:1000}
+.primary{background:#ffe066;color:#143}
+.secondary{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.24)!important}
+main{padding:18px 14px}
+.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:10px 0 12px}
+.sectionHead h2{font-size:24px;margin:0}
+.sectionHead p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.tools{display:grid;grid-template-columns:1fr 130px;gap:9px;margin-bottom:12px}
+input,select,textarea{
+  border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 13px;outline:none;width:100%
+}
+input:focus,select:focus,textarea:focus{border-color:var(--pri2);box-shadow:0 0 0 4px rgba(20,184,166,.12)}
+.chips{display:flex;gap:8px;overflow:auto;margin:0 -14px 12px;padding:0 14px 8px}
+.chips button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--pri);border-radius:999px;padding:8px 11px;font-weight:900;font-size:12px}
+.chips button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.grid{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(7,72,65,.07)}
+.media{height:92px;background:radial-gradient(circle at 80% 15%,rgba(255,224,102,.75),transparent 38%),linear-gradient(135deg,#defbf6,#fff);display:grid;place-items:center;color:var(--pri);font-size:34px;font-weight:1000}
+.body{padding:15px}
+.cat{font-size:11px;color:var(--pri);font-weight:1000;text-transform:uppercase;letter-spacing:.6px}
+.body h3{margin:5px 0 6px;font-size:18px}
+.body p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.price{margin-top:12px;color:var(--pri);font-weight:1000}
+.cardAct{display:flex;gap:8px;margin-top:12px}
+.cardAct button,.cardAct a{flex:1;border:none;text-align:center;text-decoration:none;border-radius:13px;padding:10px 8px;font-weight:1000;font-size:13px}
+.cardAct button{background:#eefbf8;color:var(--pri)}
+.cardAct a{background:var(--pri);color:#fff}
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px;margin-top:18px}
+.panel h2{font-size:23px;margin:0 0 8px}
+.panel p{color:var(--muted);line-height:1.5;font-size:13px}
+.form{display:grid;gap:11px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:grid;gap:6px;font-weight:850;font-size:13px}
+.result{display:flex;justify-content:space-between;align-items:center;background:#eefbf8;border-radius:17px;padding:14px}
+.result strong{font-size:22px;color:var(--pri)}
+.fullBtn{border:none;background:var(--pri);color:#fff;border-radius:15px;padding:13px;font-weight:1000;width:100%}
+.bottomNav{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 8px max(8px,env(safe-area-inset-bottom));box-shadow:0 -10px 30px rgba(7,72,65,.09)
+}
+.bottomNav button{border:none;background:transparent;color:var(--muted);font-weight:900;font-size:12px;padding:8px 4px;border-radius:14px}
+.bottomNav button.on{background:#eefbf8;color:var(--pri)}
+.drawer{
+  position:fixed;inset:0;z-index:60;background:rgba(4,20,18,.48);display:none
+}
+.drawer.open{display:block}
+.drawerBox{
+  position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:16px;box-shadow:0 -20px 60px rgba(0,0,0,.22)
+}
+.drawerHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.drawerHead h2{margin:0;font-size:22px}
+.close{border:none;background:#eefbf8;color:var(--pri);width:40px;height:40px;border-radius:14px;font-size:22px}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:12px}
+.tabs button{border:1px solid var(--line);background:#fff;color:var(--pri);border-radius:999px;padding:9px 12px;font-weight:900;white-space:nowrap}
+.tabs button.on{background:var(--pri);color:#fff}
+.adminList{display:grid;gap:10px;margin-top:12px}
+.adminItem{border:1px solid var(--line);border-radius:17px;padding:12px}
+.adminItem strong{display:block}
+.adminItem small{color:var(--muted)}
+.rowBtns{display:flex;gap:8px;margin-top:10px}
+.rowBtns button{border:none;border-radius:12px;padding:9px 10px;font-weight:900}
+.edit{background:#e0f2fe;color:#0369a1}.hide{background:#fef3c7;color:#92400e}.del{background:#fee2e2;color:#991b1b}
+.chatBtn{
+  position:fixed;right:16px;bottom:86px;z-index:45;border:none;width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;font-weight:1000;box-shadow:0 16px 36px rgba(15,118,110,.32)
+}
+.chatPanel{
+  position:fixed;inset:auto 10px 78px 10px;z-index:55;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 22px 60px rgba(7,72,65,.22);
+  display:none;overflow:hidden;max-height:76vh
+}
+.chatPanel.open{display:grid;grid-template-rows:auto minmax(220px,1fr) auto}
+.chatHead{background:linear-gradient(135deg,#083b35,#0f766e,#14b8a6);color:#fff;padding:14px 15px;display:flex;justify-content:space-between;align-items:center}
+.chatHead strong{display:block}.chatHead small{color:rgba(255,255,255,.75)}
+.chatBody{padding:12px;background:#f8fffd;overflow:auto;max-height:410px}
+.msg{display:flex;margin-bottom:10px}
+.msg.user{justify-content:flex-end}
+.bubble{max-width:84%;padding:11px 12px;border-radius:15px;white-space:pre-wrap;font-size:13px;line-height:1.45}
+.bot .bubble{background:#fff;border:1px solid var(--line);border-top-left-radius:5px}
+.user .bubble{background:var(--pri);color:#fff;border-top-right-radius:5px}
+.quick{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;background:#f8fffd}
+.quick button{border:1px solid var(--line);background:#fff;color:var(--pri);border-radius:999px;padding:8px 9px;font-size:12px;font-weight:900;white-space:nowrap}
+.chatForm{display:flex;gap:7px;padding:10px;border-top:1px solid var(--line)}
+.chatForm textarea{min-height:43px;max-height:92px;resize:none}
+.chatForm button{border:none;background:var(--pri);color:#fff;border-radius:14px;padding:0 14px;font-weight:1000}
+.empty{text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:20px;padding:30px 18px;background:#fff}
+.note{font-size:12px;color:var(--muted);line-height:1.45}
+@media(min-width:760px){
+  body{max-width:520px;margin:auto;background:#eefbf8}
+  .top{border-radius:0 0 34px 34px}
+  .chatPanel{left:calc(50% - 250px);right:calc(50% - 250px)}
+  .bottomNav{max-width:520px;margin:auto}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">NG</div>
+      <div>
+        <h1 id="storeTitle">Nadien's Grafika</h1>
+        <p id="storeTag">Percetakan & Digital Printing</p>
+      </div>
+    </div>
+    <button class="adminBtn" id="openAdmin">Admin</button>
+  </div>
+  <section class="hero">
+    <span class="badge">Katalog HP Siap Order</span>
+    <h2 id="heroTitle">Cetak spanduk, stiker, undangan, merchandise, dan kebutuhan promosi usaha.</h2>
+    <p id="heroSub">Pilih produk, hitung estimasi, lalu kirim order ke WhatsApp admin.</p>
+    <div class="actions">
+      <a class="primary" href="#catalog">Lihat Produk</a>
+      <button class="secondary" id="heroWa">Order WhatsApp</button>
+    </div>
+  </section>
+</header>
+
+<main>
+  <section id="catalog">
+    <div class="sectionHead">
+      <div>
+        <h2>Katalog Produk</h2>
+        <p>Harga estimasi, final tetap dicek admin.</p>
+      </div>
+    </div>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Cari produk...">
+      <select id="category"></select>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="estimator" class="panel">
+    <h2>Estimasi Order</h2>
+    <p>Masukkan ukuran/jumlah. Ini hitungan awal, bukan wahyu harga final.</p>
+    <form class="form" id="estimateForm">
+      <label>Produk<select id="estProduct"></select></label>
+      <div class="two">
+        <label>Panjang / Qty 1<input id="len" type="number" min="0" step="0.1" value="1"></label>
+        <label>Lebar / Qty 2<input id="wid" type="number" min="0" step="0.1" value="1"></label>
+      </div>
+      <label>Jumlah<input id="qty" type="number" min="1" step="1" value="1"></label>
+      <label>Catatan<textarea id="note" rows="3" placeholder="Contoh: ukuran 300x100 cm, bahan flexi, desain dari kami."></textarea></label>
+      <div class="result"><span>Estimasi</span><strong id="total">Rp0</strong></div>
+      <button class="fullBtn" type="submit">Kirim ke WhatsApp</button>
+    </form>
+  </section>
+</main>
+
+<button class="chatBtn" id="chatBtn">AI</button>
+<section class="chatPanel" id="chatPanel">
+  <div class="chatHead">
+    <div><strong>Admin AI NG</strong><small>Bot bantu jawab katalog</small></div>
+    <button class="close" id="closeChat">×</button>
+  </div>
+  <div class="chatBody" id="chatBody"></div>
+  <div class="quick">
+    <button>Harga spanduk 300x100?</button>
+    <button>Produk apa saja?</button>
+    <button>Cara order?</button>
+  </div>
+  <form class="chatForm" id="chatForm">
+    <textarea id="chatInput" rows="1" placeholder="Tanya harga/produk/order..."></textarea>
+    <button>Kirim</button>
+  </form>
+</section>
+
+<div class="drawer" id="adminDrawer">
+  <div class="drawerBox">
+    <div class="drawerHead">
+      <h2>Admin HP</h2>
+      <button class="close" id="closeAdmin">×</button>
+    </div>
+    <div class="tabs">
+      <button class="tab on" data-tab="produkAdmin">Produk</button>
+      <button class="tab" data-tab="profilAdmin">Profil</button>
+      <button class="tab" data-tab="backupAdmin">Backup</button>
+    </div>
+
+    <section id="produkAdmin">
+      <form class="form" id="productForm">
+        <input id="pid" type="hidden">
+        <label>Nama Produk<input id="pname" required placeholder="Spanduk Flexi"></label>
+        <label>Kategori<input id="pcat" required placeholder="Spanduk"></label>
+        <div class="two">
+          <label>Ikon<input id="picon" maxlength="4" placeholder="SP"></label>
+          <label>Satuan
+            <select id="punit">
+              <option value="m2">m²</option>
+              <option value="pcs">pcs</option>
+              <option value="paket">paket</option>
+            </select>
+          </label>
+        </div>
+        <div class="two">
+          <label>Harga<input id="pprice" type="number" min="0" step="500" required></label>
+          <label>Minimal<input id="pmin" type="number" min="0" step="500" required></label>
+        </div>
+        <label>Deskripsi<textarea id="pdesc" rows="3" required></textarea></label>
+        <label style="display:flex;align-items:center;gap:10px"><input id="pactive" type="checkbox" checked style="width:auto"> Tampilkan di katalog</label>
+        <button class="fullBtn" type="submit">Simpan Produk</button>
+        <button class="fullBtn" type="button" id="newProduct" style="background:#eefbf8;color:#0f766e">Produk Baru</button>
+      </form>
+      <div class="adminList" id="adminList"></div>
+    </section>
+
+    <section id="profilAdmin" hidden>
+      <form class="form" id="profileForm">
+        <label>Nama Toko<input id="sname" required></label>
+        <label>Tagline<input id="stag" required></label>
+        <label>Nomor WA Admin<input id="swa" required placeholder="083142020003"></label>
+        <label>Alamat<input id="saddr"></label>
+        <label>Judul Depan<textarea id="shero" rows="2"></textarea></label>
+        <label>Deskripsi Depan<textarea id="ssub" rows="3"></textarea></label>
+        <button class="fullBtn" type="submit">Simpan Profil</button>
+      </form>
+    </section>
+
+    <section id="backupAdmin" hidden>
+      <p class="note">Data tersimpan di browser HP ini. Kalau ganti HP/browser, data tidak ikut. Ya, penyimpanan lokal memang sesederhana itu.</p>
+      <button class="fullBtn" id="exportData">Download Backup JSON</button>
+      <label style="margin-top:10px">Import Backup JSON<input id="importData" type="file" accept=".json,application/json"></label>
+      <button class="fullBtn" id="resetData" style="background:#fee2e2;color:#991b1b;margin-top:10px">Reset Data Awal</button>
+    </section>
+  </div>
+</div>
+
+<nav class="bottomNav">
+  <button class="on" data-go="catalog">Produk</button>
+  <button data-go="estimator">Estimasi</button>
+  <button id="bottomChat">Chat AI</button>
+  <button id="bottomWa">WA Admin</button>
+</nav>
+
+<script>
+const KEY="ng_hp_data_v2";
+const defaultData={
+ profile:{
+  storeName:"Nadien's Grafika",
+  tagline:"Percetakan & Digital Printing",
+  whatsapp:"6283142020003",
+  address:"Serang Timur",
+  heroTitle:"Cetak spanduk, stiker, undangan, merchandise, dan kebutuhan promosi usaha.",
+  heroSubtitle:"Pilih produk, hitung estimasi, lalu kirim order ke WhatsApp admin."
+ },
+ products:[
+  {id:"spanduk-flexi",name:"Spanduk Flexi",category:"Spanduk",description:"Cetak spanduk outdoor/indoor untuk toko, acara, promosi, dan sekolah.",unit:"m2",price:18000,minPrice:25000,active:true,icon:"SP"},
+  {id:"banner-indoor",name:"Banner Indoor",category:"Spanduk",description:"Cetak indoor warna tajam untuk display dan promosi.",unit:"m2",price:35000,minPrice:35000,active:true,icon:"BI"},
+  {id:"x-banner",name:"X Banner",category:"Banner",description:"Ukuran umum 60x160 cm, cocok untuk promosi toko/event.",unit:"pcs",price:85000,minPrice:85000,active:true,icon:"XB"},
+  {id:"stiker-a3",name:"Stiker A3+",category:"Stiker",description:"Vinyl, chromo, transparan, kisscut, dan label kemasan.",unit:"pcs",price:12000,minPrice:12000,active:true,icon:"ST"},
+  {id:"stiker-meteran",name:"Stiker Meteran",category:"Stiker",description:"Untuk branding kaca, motor, label besar, dan promosi.",unit:"m2",price:55000,minPrice:55000,active:true,icon:"SM"},
+  {id:"undangan",name:"Undangan Full Color",category:"Undangan",description:"Undangan custom nikahan, khitanan, ulang tahun, dan acara.",unit:"pcs",price:2500,minPrice:50000,active:true,icon:"UD"},
+  {id:"poster-a3",name:"Poster A3+",category:"Cetak A3+",description:"Poster promosi, pengumuman, menu, dan display.",unit:"pcs",price:8000,minPrice:8000,active:true,icon:"A3"},
+  {id:"kartu-nama",name:"Kartu Nama",category:"Cetak A3+",description:"Kartu nama full color untuk usaha dan kantor.",unit:"pcs",price:350,minPrice:35000,active:true,icon:"KN"},
+  {id:"id-card",name:"ID Card PVC",category:"ID Card",description:"Kartu PVC, kartu member, kartu pelajar, dan tanda pengenal.",unit:"pcs",price:15000,minPrice:15000,active:true,icon:"ID"},
+  {id:"lanyard",name:"Lanyard Custom",category:"Merchandise",description:"Tali ID card custom untuk sekolah, kantor, dan event.",unit:"pcs",price:15000,minPrice:15000,active:true,icon:"LY"},
+  {id:"mug-custom",name:"Mug Custom",category:"Merchandise",description:"Mug custom foto, logo, ucapan, dan souvenir.",unit:"pcs",price:17000,minPrice:17000,active:true,icon:"MG"},
+  {id:"stempel",name:"Stempel",category:"Stempel",description:"Stempel otomatis, flash, dan desain hitam putih.",unit:"pcs",price:45000,minPrice:45000,active:true,icon:"STP"},
+  {id:"sertifikat",name:"Sertifikat / Piagam",category:"Cetak A3+",description:"Sertifikat full color untuk sekolah, kantor, dan lomba.",unit:"pcs",price:6000,minPrice:6000,active:true,icon:"SR"},
+  {id:"buku-yasin",name:"Buku Yasin & Tahlil",category:"Buku",description:"Buku yasin custom cover dan isi sesuai kebutuhan.",unit:"pcs",price:8500,minPrice:85000,active:true,icon:"YS"},
+  {id:"neon-box",name:"Neon Box",category:"Promosi",description:"Neon box toko dan signage promosi, harga menyesuaikan bahan.",unit:"m2",price:350000,minPrice:350000,active:true,icon:"NB"}
+ ]
+};
+const $=id=>document.getElementById(id);
+let cat="Semua";
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function getData(){try{let d=JSON.parse(localStorage.getItem(KEY));if(d&&d.profile&&Array.isArray(d.products))return d}catch(e){};localStorage.setItem(KEY,JSON.stringify(defaultData));return clone(defaultData)}
+function save(d){localStorage.setItem(KEY,JSON.stringify(d));renderAll()}
+function rp(v){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Number(v||0))}
+function normWa(n){let x=String(n||"").replace(/\D/g,""); if(x.startsWith("0")) x="62"+x.slice(1); return x}
+function wa(msg){return "https://wa.me/"+normWa(getData().profile.whatsapp)+"?text="+encodeURIComponent(msg)}
+function active(){return getData().products.filter(p=>p.active)}
+function unitText(u){return u==="m2"?"per m²":u==="pcs"?"per pcs":"per paket"}
+function renderProfile(){
+ let p=getData().profile;
+ $("storeTitle").textContent=p.storeName||"Nadien's Grafika";
+ $("storeTag").textContent=p.tagline||"Percetakan & Digital Printing";
+ $("heroTitle").textContent=p.heroTitle||defaultData.profile.heroTitle;
+ $("heroSub").textContent=p.heroSubtitle||defaultData.profile.heroSubtitle;
+ ["sname","stag","swa","saddr","shero","ssub"].forEach(id=>{});
+ $("sname").value=p.storeName||"";$("stag").value=p.tagline||"";$("swa").value=p.whatsapp||"";$("saddr").value=p.address||"";$("shero").value=p.heroTitle||"";$("ssub").value=p.heroSubtitle||"";
+}
+function renderCats(){
+ let cats=["Semua",...new Set(active().map(p=>p.category).filter(Boolean))];
+ $("category").innerHTML=cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+ $("category").value=cat;
+ $("chips").innerHTML=cats.map(c=>`<button class="${c===cat?'on':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+ document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{cat=b.dataset.cat;$("category").value=cat;renderProducts();renderCats()});
+}
+function renderProducts(){
+ let q=($("search").value||"").toLowerCase();
+ let list=active().filter(p=>(cat==="Semua"||p.category===cat)&&(`${p.name} ${p.category} ${p.description}`.toLowerCase().includes(q)));
+ $("grid").innerHTML=list.length?list.map(p=>`
+ <article class="card">
+  <div class="media">${esc(p.icon||p.name.slice(0,2).toUpperCase())}</div>
+  <div class="body">
+   <div class="cat">${esc(p.category)}</div>
+   <h3>${esc(p.name)}</h3>
+   <p>${esc(p.description)}</p>
+   <div class="price">Mulai ${rp(p.price)} ${unitText(p.unit)}</div>
+   <div class="cardAct">
+    <button data-hit="${esc(p.id)}">Hitung</button>
+    <a target="_blank" rel="noopener" href="${wa(`Halo Admin Nadien's Grafika, saya mau order ${p.name}.`)}">Order</a>
+   </div>
+  </div>
+ </article>`).join(""):`<div class="empty">Produk tidak ditemukan.</div>`;
+ document.querySelectorAll("[data-hit]").forEach(b=>b.onclick=()=>{$("estProduct").value=b.dataset.hit;calc();go("estimator")});
+}
+function renderEstimator(){
+ $("estProduct").innerHTML=active().map(p=>`<option value="${esc(p.id)}">${esc(p.name)} - ${rp(p.price)}</option>`).join("");
+ calc();
+}
+function calc(){
+ let p=active().find(x=>x.id===$("estProduct").value)||active()[0];
+ if(!p){$("total").textContent=rp(0);return {total:0}};
+ let l=Number($("len").value||0),w=Number($("wid").value||0),q=Number($("qty").value||1);
+ let sub=p.unit==="m2"?l*w*p.price*q:p.price*q;
+ let total=Math.max(sub,Number(p.minPrice||0));
+ $("total").textContent=rp(total);return {p,l,w,q,total}
+}
+function renderAdminList(){
+ let d=getData();
+ $("adminList").innerHTML=d.products.map(p=>`
+ <div class="adminItem">
+  <strong>${esc(p.name)} ${p.active?'':'(Nonaktif)'}</strong>
+  <small>${esc(p.category)} • ${rp(p.price)} ${unitText(p.unit)} • Min ${rp(p.minPrice)}</small>
+  <div class="rowBtns">
+   <button class="edit" data-edit="${esc(p.id)}">Edit</button>
+   <button class="hide" data-toggle="${esc(p.id)}">${p.active?'Sembunyikan':'Tampilkan'}</button>
+   <button class="del" data-del="${esc(p.id)}">Hapus</button>
+  </div>
+ </div>`).join("");
+ document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editProduct(b.dataset.edit));
+ document.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>{let d=getData();let p=d.products.find(x=>x.id===b.dataset.toggle);if(p){p.active=!p.active;save(d)}});
+ document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{let d=getData();let p=d.products.find(x=>x.id===b.dataset.del);if(p&&confirm("Hapus "+p.name+"?")){d.products=d.products.filter(x=>x.id!==p.id);save(d)}});
+}
+function renderAll(){renderProfile();renderCats();renderProducts();renderEstimator();renderAdminList()}
+function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function slug(s){return String(s||"").toLowerCase().trim().replace(/[^\w\s-]/g,"").replace(/\s+/g,"-")||"produk"}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"});document.querySelectorAll(".bottomNav button").forEach(b=>b.classList.toggle("on",b.dataset.go===id))}
+function clearProduct(){["pid","pname","pcat","picon","pprice","pmin","pdesc"].forEach(id=>$(id).value="");$("punit").value="m2";$("pactive").checked=true}
+function editProduct(id){let p=getData().products.find(x=>x.id===id);if(!p)return;$("pid").value=p.id;$("pname").value=p.name;$("pcat").value=p.category;$("picon").value=p.icon||"";$("punit").value=p.unit||"pcs";$("pprice").value=p.price||0;$("pmin").value=p.minPrice||0;$("pdesc").value=p.description||"";$("pactive").checked=!!p.active;$("adminDrawer").classList.add("open")}
+$("search").oninput=renderProducts;$("category").onchange=()=>{cat=$("category").value;renderProducts();renderCats()};
+["estimateForm","len","wid","qty","estProduct"].forEach(id=>$(id).addEventListener("input",calc));
+$("estimateForm").onsubmit=e=>{e.preventDefault();let c=calc();if(!c.p)return;let msg=`Halo Admin Nadien's Grafika, saya mau order:
+Produk: ${c.p.name}
+Panjang/Qty 1: ${c.l}
+Lebar/Qty 2: ${c.w}
+Jumlah: ${c.q}
+Estimasi: ${rp(c.total)}
+Catatan: ${$("note").value||"-"}
+
+Mohon info harga final dan prosesnya.`;window.open(wa(msg),"_blank")};
+$("heroWa").onclick=() => window.open(wa("Halo Admin Nadien's Grafika, saya mau order."),"_blank");
+$("bottomWa").onclick=() => window.open(wa("Halo Admin Nadien's Grafika, saya mau order."),"_blank");
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+$("openAdmin").onclick=()=>{$("adminDrawer").classList.add("open")};$("closeAdmin").onclick=()=>{$("adminDrawer").classList.remove("open")};
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");["produkAdmin","profilAdmin","backupAdmin"].forEach(id=>$(id).hidden=id!==t.dataset.tab)});
+$("newProduct").onclick=clearProduct;
+$("productForm").onsubmit=e=>{e.preventDefault();let d=getData();let id=$("pid").value||slug($("pname").value);if(!$("pid").value){let base=id,n=2;while(d.products.some(p=>p.id===id))id=base+"-"+n++}
+ let p={id,name:$("pname").value.trim(),category:$("pcat").value.trim(),icon:($("picon").value.trim()||$("pname").value.slice(0,2)).toUpperCase(),unit:$("punit").value,price:Number($("pprice").value||0),minPrice:Number($("pmin").value||0),description:$("pdesc").value.trim(),active:$("pactive").checked};
+ let i=d.products.findIndex(x=>x.id===$("pid").value); if(i>=0)d.products[i]=p;else d.products.unshift(p); save(d); clearProduct(); alert("Produk tersimpan")};
+$("profileForm").onsubmit=e=>{e.preventDefault();let d=getData();d.profile={storeName:$("sname").value.trim(),tagline:$("stag").value.trim(),whatsapp:normWa($("swa").value),address:$("saddr").value.trim(),heroTitle:$("shero").value.trim(),heroSubtitle:$("ssub").value.trim()};save(d);alert("Profil tersimpan")};
+$("resetData").onclick=()=>{if(confirm("Reset semua data?")){localStorage.setItem(KEY,JSON.stringify(defaultData));renderAll()}};
+$("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(getData(),null,2)],{type:"application/json"});let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="backup-ng-hp.json";a.click();URL.revokeObjectURL(a.href)};
+$("importData").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.profile||!Array.isArray(d.products))throw Error();localStorage.setItem(KEY,JSON.stringify(d));renderAll();alert("Import berhasil")}catch(err){alert("File backup tidak cocok")}};r.readAsText(f)};
+// Chat bot lokal
+const chat=$("chatPanel"),chatBody=$("chatBody"),chatInput=$("chatInput");
+function addMsg(role,text){let div=document.createElement("div");div.className="msg "+(role==="user"?"user":"bot");div.innerHTML=`<div class="bubble">${esc(text)}</div>`;chatBody.appendChild(div);chatBody.scrollTop=chatBody.scrollHeight}
+function botReply(msg){
+ let t=msg.toLowerCase(), ps=active();
+ let found=ps.find(p=>t.includes(p.name.toLowerCase()))||ps.find(p=>p.category&&t.includes(p.category.toLowerCase()));
+ if(t.includes("produk")||t.includes("layanan")||t.includes("apa saja")){
+  return "Produk tersedia:\n"+ps.slice(0,12).map(p=>"• "+p.name+" mulai "+rp(p.price)).join("\n")+"\n\nUntuk detail, tulis nama produk + ukuran + jumlah.";
+ }
+ if(t.includes("cara")||t.includes("order")||t.includes("pesan")){
+  return "Cara order: tulis produk, ukuran, jumlah, bahan/finishing, deadline, dan kirim file desain kalau ada. Setelah itu klik WA Admin. Biar admin tidak main tebak-tebakan seperti paranormal percetakan.";
+ }
+ if(t.includes("harga")||t.includes("berapa")||t.includes("spanduk")||t.includes("stiker")||t.includes("banner")){
+  if(found)return `${found.name} mulai ${rp(found.price)} ${unitText(found.unit)}, minimal ${rp(found.minPrice)}. Harga final tergantung ukuran, bahan, finishing, dan desain.`;
+  return "Bisa dibantu estimasi. Tulis produk, ukuran, jumlah, dan bahan. Contoh: spanduk 300x100 cm bahan flexi.";
+ }
+ if(t.includes("wa")||t.includes("whatsapp")) return "Nomor WhatsApp admin: 083142020003. Bisa klik tombol WA Admin di bawah.";
+ return "Saya Admin AI versi lokal untuk katalog NG. Saya bisa bantu info produk, harga estimasi, cara order, dan arahkan ke WhatsApp admin.";
+}
+$("chatBtn").onclick=()=>{chat.classList.toggle("open");if(chat.classList.contains("open")&&!chatBody.children.length)addMsg("bot","Halo, saya Admin AI NG versi HP. Tanya harga, produk, atau cara order. Jawaban ini estimasi, harga final tetap dicek admin.")};
+$("bottomChat").onclick=()=>$("chatBtn").click();$("closeChat").onclick=()=>chat.classList.remove("open");
+$("chatForm").onsubmit=e=>{e.preventDefault();let m=chatInput.value.trim();if(!m)return;chatInput.value="";addMsg("user",m);setTimeout(()=>addMsg("bot",botReply(m)),300)};
+document.querySelectorAll(".quick button").forEach(b=>b.onclick=()=>{chatInput.value=b.textContent;$("chatForm").requestSubmit()});
+renderAll();
+</script>
+</body>
+</html>
